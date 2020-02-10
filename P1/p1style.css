@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "FAST";
+  src: url("FAST.ttf");
+}
+
+body {
+  background-color: yellow;
+  background-image: url("versace.gif");
+  background-repeat: round;
+}
+
+fieldset{
+  background-color: white;
+  opacity: 0.8;
+}
+
+h1{
+  font-family: "FAST";
+  font-size: 50px;
+  text-align: center;
+  color: black;
+}
+
+h2.titulos{
+  color: black;
+}
+
+ul.texto{
+  list-style-type: circle;
+  color: black;
+}
+
+img.foto{
+  position: absolute;
+  right: 600px;
+  top: 230px;
+  border-style: solid;
+  border-width: medium;
+}
+
+#DatosPersonales{
+  float: center;
+  color: black;
+  width: 700px;
+  margin: 0 auto;
+}
+
+#ExperienciaLaboral{
+  float: center;
+  color: black;
+  width: 700px;
+  margin: 0 auto;
+}
+
+#Estudios{
+  float: center;
+  color: black;
+  width: 700px;
+  margin: 0 auto;
+}
+
+#EXTRA{
+  float: center;
+  color: black;
+  width: 700px;
+  margin: 0 auto;
+}

@@ -1,0 +1,36 @@
+body {
+  background-image: url("matematicas.jpg");
+}
+
+button {
+  background-color: red;
+  color: white;
+  padding: 16px 32px;
+  font-size: 16px;
+  border-radius: 22px;
+  margin: 4px 2px;
+  margin-left: 16px;
+}
+
+div.pantalla {
+  background-color: white;
+  border-style: double;
+  font-size: 32px
+  padding: 10px 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin: 5px;
+  border-radius: 20px;
+  text-align: center;
+  width: 430px;
+}
+
+.botones {
+  text-align: left;
+}
+
+div.calculadora {
+  padding-top: 10px;
+  padding-bottom: 60px;
+  text-align: left;
+}

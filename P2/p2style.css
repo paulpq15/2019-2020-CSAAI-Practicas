@@ -1,3 +1,8 @@
+@@font-face {
+  font-family: "Calculator";
+  src: url("Calculator.ttf");
+}
+
 body {
   background-image: url("matematicas.jpg");
 }
@@ -10,6 +15,12 @@ button {
   border-radius: 22px;
   margin: 4px 2px;
   margin-left: 16px;
+}
+
+h1 {
+  font-family: "Calculator";
+  font-size: 50px;
+  color: white;
 }
 
 div.pantalla {

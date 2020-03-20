@@ -1,4 +1,5 @@
 class Bola {
+
   constructor(ctx) {
     //-- Guardar el contexto de dibujo
     this.ctx = ctx;

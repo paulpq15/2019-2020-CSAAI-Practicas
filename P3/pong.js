@@ -34,6 +34,30 @@ const bola = {
   vy : 0,
 }
 
+function bola_draw()
+{
+  //----- Dibujar la Bola
+  ctx.beginPath();
+  ctx.fillStyle='white';
+
+  //-- x,y, anchura, altura
+  ctx.rect(bola.x, bola.y, bola.size, bola.size);
+  ctx.fill();
+}
+
+function bola_init()
+{
+  //-- Inicializa la bola: A su posicion inicial
+  bola.x = bola.x_ini;
+  bola.y = bola.y_ini;
+}
+
+function bola_update()
+{
+  bola.x += bola.vx;
+  bola.y += bola.vy;
+}
+
 //-- Objeto raqueta
 const raqI = {
   //-- Constante: Tamaño de la raqueta
@@ -51,23 +75,41 @@ const raqI = {
   v : 0,
 }
 
-//-- Pintar todos los objetos en el canvas
-function draw() {
+function raqI_init()
+{
+  raqI.x = raqI.x_ini;
+  raqI.y = raqI.y_ini;
+}
 
-  //----- Dibujar la Bola
-  ctx.beginPath();
-  ctx.fillStyle='white';
+function raqI_update()
+{
+  raqI.y += raqI.v;
+}
 
-  //-- x,y, anchura, altura
-  ctx.rect(bola_x, bola_y, bola.size, bola.size);
-  ctx.fill();
-
+function raqI_draw()
+{
   //------- Dibujar las raquetas
   ctx.beginPath();
   ctx.fillStyle='white';
 
   //-- Raqueta izquierda
-  ctx.rect(raqI_x, raqI_y, raqI.width, raqI.height);
+  ctx.rect(raqI.x, raqI.y, raqI.width, raqI.height);
+
+  //-- Pintar!
+  ctx.fill();
+}
+
+//-- Pintar todos los objetos en el canvas
+function draw() {
+  //----- Dibujar la Bola
+  bola_draw();
+
+  //-- Dibunar la raqueta izquierda
+  raqI_draw();
+
+  //------- Dibujar la raqueta derecha
+  ctx.beginPath();
+  ctx.fillStyle='white';
 
   //-- Raqueta derecha
   ctx.rect(540, 300, 10, 40);
@@ -131,12 +173,10 @@ function animacion()
 }
 
 //-- Inicializa la bola: A su posicion inicial
-bola.x = bola.x_ini;
-bola.y = bola.y_ini;
+bola_init();
 
 //-- Inicializar la raqueta a su posicion inicial
-raqI.x = raqI.x_ini;
-raqI.y = raqI.y_ini;
+raqI_init();
 
 //-- Arrancar la animación
 setInterval(()=>{

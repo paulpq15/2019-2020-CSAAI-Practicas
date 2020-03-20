@@ -11,8 +11,14 @@ console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 const ctx = canvas.getContext("2d");
 
 //-- Variables para la bola
-let bola_x = 50;
+let bola_x = 100;
+let bola_y = 200;
 let bola_vx = 0;
+
+//-- Variables para la raqueta izquierda
+let raqI_x = 50;
+let raqI_y = 100;
+let raqI_v = 0;  //-- Velocidad
 
 //-- Pintar todos los objetos en el canvas
 function draw() {
@@ -22,7 +28,7 @@ function draw() {
   ctx.fillStyle='white';
 
   //-- x,y, anchura, altura
-  ctx.rect(100, 200, 10, 10);
+  ctx.rect(bola_x, bola_y, 10, 10);
   ctx.fill();
 
   //------- Dibujar las raquetas
@@ -30,7 +36,7 @@ function draw() {
   ctx.fillStyle='white';
 
   //-- Raqueta izquierda
-  ctx.rect(50, 100, 10, 40);
+  ctx.rect(raqI_x, raqI_y, 10, 40);
 
   //-- Raqueta derecha
   ctx.rect(550, 300, 10, 40);
@@ -65,13 +71,20 @@ function draw() {
 function animacion()
 {
 
-  //-- Actualizar las posiciones de los objetos móviles
+  //-- Actualizar la raqueta con la velocidad actual
+  raqI_y += raqI_v
 
-  //-- Comprobar si la bola ha alcanzado el límite derecho
+ //-- Comprobar si la bola ha alcanzado el límite derecho
  //-- Si es así, se cambia de signo la velocidad, para
  // que "rebote" y vaya en el sentido opuesto
  if (bola_x >= canvas.width) {
    //-- Hay colisión. Cambiar el signo de la bola
+   bola_vx = bola_vx * -1;
+ }
+
+ //-- Comprobar si hay colisión con la raqueta izquierda
+ if (bola_x >= raqI_x && bola_x <=(raqI_x+10) &&
+     bola_y >= raqI_y && bola_y <=(raqI_y+40)) {
    bola_vx = bola_vx * -1;
  }
 
@@ -94,12 +107,25 @@ setInterval(()=>{
 //-- Retrollamada de las teclas
 window.onkeydown = (e) => {
 
-  //-- Según la tecla se hace una cosa u otra
   switch (e.key) {
-
-    //-- Tecla ESPACIO: Saque
+    case "a":
+      raqI_v = 3;
+      break;
+    case "q":
+      raqI_v = -3;
+      break;
     case " ":
-      bola_x = 50;
+      bola_x = 100;
       bola_vx = 6;
+    default:
   }
+}
+
+//-- Retrollamada de la liberacion de teclas
+window.onkeyup = (e) => {
+  if (e.key == "a" || e.key == "q"){
+    //-- Quitar velocidad de la raqueta
+    raqI_v = 0;
+  }
+
 }

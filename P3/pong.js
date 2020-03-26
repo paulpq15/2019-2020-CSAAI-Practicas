@@ -10,6 +10,10 @@ console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 //-- Obtener el contexto para pintar en el canvas
 const ctx = canvas.getContext("2d");
 
+//-- Obtener Sonidos
+const sonido_raqueta = new Audio("pong-raqueta.mp3");
+const sonido_rebote = new Audio("pong-rebote.mp3");
+
 //-- Pintar todos los objetos en el canvas
 function draw() {
 
@@ -53,18 +57,26 @@ function animacion()
   raqI.update();
   raqD.update();
 
+
  //-- Comprobar si la bola ha alcanzado el límite derecho
  //-- Si es así, se cambia de signo la velocidad, para
  // que "rebote" y vaya en el sentido opuesto
- if (bola_x >= canvas.width) {
+ if (bola.x >= canvas.width) {
    //-- Hay colisión. Cambiar el signo de la bola
-   bola_vx = bola_vx * -1;
+   bola.vx = bola.vx * -1;
+   //-- Reproducir sonido
+   sonido_rebote.currentTime = 0;
+   sonido_rebote.play();
  }
 
  //-- Comprobar si hay colisión con la raqueta izquierda
- if (bola_x >= raqI_x && bola_x <=(raqI_x+ raqI.width) &&
-     bola_y >= raqI_y && bola_y <=(raqI_y+ raqI.height)) {
-   bola_vx = bola_vx * -1;
+ if (bola.x >= raqI.x && bola.x <=(raqI.x+ raqI.width) &&
+     bola.y >= raqI.y && bola.y <=(raqI.y+ raqI.height)) {
+   bola.vx = bola.vx * -1;
+
+   //-- Reproducir sonido
+   sonido_raqueta.currentTime = 0;
+   sonido_raqueta.play();
  }
 
  //-- Actualizar coordenada x de la bola, en funcion de
@@ -100,18 +112,23 @@ window.onkeydown = (e) => {
 
   switch (e.key) {
     case "a":
-      raqI_v = raqI.v_ini;
+      raqI.v = raqI.v_ini;
       break;
     case "q":
-      raqI_v = raqI.v_ini * -1;
+      raqI.v = raqI.v_ini * -1;
       break;
     case "p":
-      raqD_v = raqD.v_ini * -1;
+      raqD.v = raqD.v_ini * -1;
       break;
     case "l":
-      raqD_v = raqD.v_ini;
+      raqD.v = raqD.v_ini;
       break;
     case " ":
+
+      //-- Reproducir sonido
+      sonido_raqueta.currentTime = 0;
+      sonido_raqueta.play();
+
       //-- Llevar bola a su posicion incicial
       bola.init();
 
@@ -125,10 +142,11 @@ window.onkeydown = (e) => {
 window.onkeyup = (e) => {
   if (e.key == "a" || e.key == "q"){
     //-- Quitar velocidad de la raqueta izquierda
-    raqI_v = 0;
+    raqI.v = 0;
   }
 
-  if (e.key == "p" || e.key == "l"){
+  if (e.key == "p" || e.key == "l") {
     //-- Quitar velocidad de la raqueta derecha
-    raqD_v = 0;
+    raqD.v = 0;
+  }
 }

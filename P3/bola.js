@@ -1,5 +1,4 @@
 class Bola {
-
   constructor(ctx) {
     //-- Guardar el contexto de dibujo
     this.ctx = ctx;
@@ -7,7 +6,7 @@ class Bola {
     //-- Constante: Tamaño de la bola
     this.size = 5;
 
-    //-- Contante: Posicion inicial de la bola
+    //-- Constante: Posicion inicial de la bola
     this.x_ini = 100;
     this.y_ini = 200;
 
@@ -42,6 +41,8 @@ class Bola {
     //-- Inicializa la bola: A su posicion inicial
     this.x = this.x_ini;
     this.y = this.y_ini;
+    this.vx = 0;
+    this.vy = 0;
   }
 
   update() {

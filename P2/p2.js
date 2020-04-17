@@ -16,6 +16,7 @@ for (i=0; i<digito.length; i++) {
     }else{
       display.innerHTML += ev.target.value;
     }
+    click.play();
   }
 }
 
@@ -30,6 +31,7 @@ for (i=0; i<operador.length; i++) {
     }else{
       display.innerHTML += ev.target.value;
     }
+    click.play();
   }
 }
 

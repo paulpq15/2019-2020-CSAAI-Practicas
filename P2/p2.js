@@ -36,11 +36,13 @@ for (i=0; i<operador.length; i++) {
 //-- Evaluar la expresion
 igual.onclick = () => {
   display.innerHTML = eval(display.innerHTML);
+  click.play();
 }
 
 //-- Poner a cero la expresion
 clear.onclick = () => {
   display.innerHTML = "0";
+  click.play();
 }
 
 //-- Borrar el ultimo numero u operador
@@ -53,4 +55,5 @@ borrar.onclick = () => {
   }else{
     display.innerHTML = display.innerHTML.slice(0,-1)
   }
+  click.play();
 }

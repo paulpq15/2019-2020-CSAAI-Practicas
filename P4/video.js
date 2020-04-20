@@ -36,21 +36,21 @@ const sel3 = document.getElementById("sel3")
 sel1.onclick = () => {
   console.log("Reproduciendo fuente 1");
   videoenemision.src = fuente1.src;
-  videoenemision.currentTime = fuente1.currentTime;
+  videoenemision.currentTime = fuente1.currentTime + 0.33;
   videoenemision.play();
 };
 
 sel2.onclick = () => {
   console.log("Reproduciendo fuente 2");
   videoenemision.src = fuente2.src;
-  videoenemision.currentTime = fuente2.currentTime;
+  videoenemision.currentTime = fuente2.currentTime + 0.33;
   videoenemision.play();
 };
 
 sel3.onclick = () => {
   console.log("Reproduciendo fuente 3");
   videoenemision.src = fuente3.src;
-  videoenemision.currentTime = fuente3.currentTime;
+  videoenemision.currentTime = fuente3.currentTime + 0.33;
   videoenemision.play();
 };
 

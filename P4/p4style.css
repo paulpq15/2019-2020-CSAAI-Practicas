@@ -1,5 +1,18 @@
 /* Fondo de la página */
 
+@font-face {
+  font-family: "Letra";
+  src: url("letra.TTF");
+}
+
  body {
    background-image: url("trapcake.jpg");
  }
+
+h1 {
+  font-family: "Letra";
+}
+
+h3 {
+  font-family: "Letra";
+}

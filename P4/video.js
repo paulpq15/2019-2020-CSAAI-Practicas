@@ -32,26 +32,35 @@ const sel1 = document.getElementById("sel1")
 const sel2 = document.getElementById("sel2")
 const sel3 = document.getElementById("sel3")
 
-//-- Función de retrollamada del botón de ver
+//-- Función de retrollamada del botón de ver y marcado de la fuente seleccionada
 sel1.onclick = () => {
   console.log("Reproduciendo fuente 1");
   videoenemision.src = fuente1.src;
-  videoenemision.currentTime = fuente1.currentTime + 0.34;
+  videoenemision.currentTime = fuente1.currentTime + 0.3;
   videoenemision.play();
+  fuente1.style.border = '3px solid red';
+  fuente2.style.border = '0px';
+  fuente3.style.border = '0px';
 };
 
 sel2.onclick = () => {
   console.log("Reproduciendo fuente 2");
   videoenemision.src = fuente2.src;
-  videoenemision.currentTime = fuente2.currentTime + 0.34;
+  videoenemision.currentTime = fuente2.currentTime + 0.3;
   videoenemision.play();
+  fuente1.style.border = '0px';
+  fuente2.style.border = '3px solid red';
+  fuente3.style.border = '0px';
 };
 
 sel3.onclick = () => {
   console.log("Reproduciendo fuente 3");
   videoenemision.src = fuente3.src;
-  videoenemision.currentTime = fuente3.currentTime + 0.34;
+  videoenemision.currentTime = fuente3.currentTime + 0.3;
   videoenemision.play();
+  fuente1.style.border = '0px';
+  fuente2.style.border = '0px';
+  fuente3.style.border = '3px solid red';
 };
 
 //-- Funcion de retrollamada del boton de parar

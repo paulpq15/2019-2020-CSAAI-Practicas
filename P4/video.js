@@ -26,13 +26,27 @@ fuente3.src="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/rauw3
 //-- Imagen estática a mostrar cuando el video no
 //-- ha arrancado
 videoenemision.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
+fuente1.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
+fuente2.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
+fuente3.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
 
 //-- Obtener los botones
+const on = document.getElementById("on")
+const stop = document.getElementById("stop")
+//const off = document.getElementById("off")
 const sel1 = document.getElementById("sel1")
 const sel2 = document.getElementById("sel2")
 const sel3 = document.getElementById("sel3")
-const automatico = document.getElementById("automatico")
-const manual = document.getElementById("manual")
+//const automatico = document.getElementById("automatico")
+//const manual = document.getElementById("manual")
+
+//-- Funcion para que se visualicen las distintas fuentes
+on.onclick = () => {
+  console.log("Encendiendo las fuentes");
+  fuente1.play()
+  fuente2.play()
+  fuente3.play()
+};
 
 //-- Función de retrollamada del botón de ver y marcado de la fuente seleccionada
 sel1.onclick = () => {
@@ -85,9 +99,11 @@ sel3.onclick = () => {
   //}
 //};
 
-//-- Funcion de retrollamada del boton de parar
-//--stop.onclick = () => {
-  //video1.pause();
+//-- Funcion para que se quite la señal del monitor
+stop.onclick = () => {
+  console.log("Se quita la fuente de emision en el monitor");
+  videoenemision.pause();
+  videoenemision.src=null;
   //video2.pause();
   //video3.pause();
 
@@ -97,4 +113,14 @@ sel3.onclick = () => {
   //fuente2.src=null;
   //fuente3.src=null;
 
+}
+
+//off.onclick = () => {
+  //console.log("Se quitan las fuentes");
+  //fuente1.pause();
+  //fuente1.src=null;
+  //fuente2.pause();
+  //fuente2.src=null;
+  //fuente3.pause();
+  //fuente3.src=null;
 //}

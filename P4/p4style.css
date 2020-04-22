@@ -43,3 +43,8 @@ h3 {
   top: 289px;
   margin-right: -17px;
 }
+
+.modos {
+  position: absolute;
+  top: 100px;
+}

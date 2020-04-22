@@ -21,6 +21,13 @@ h3 {
 
 .botones {
   margin-left: 75px;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: #e2889b;
+}
+
+.botones:hover {
+  background-color: #f25f8d;
 }
 
 #videoenemision {

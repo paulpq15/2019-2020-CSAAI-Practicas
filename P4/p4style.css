@@ -36,6 +36,10 @@ h3 {
 }
 
 .fu3nte {
-  margin-left: 410px;
-  margin-top: -362px
+  /*margin-left: 410px;
+  margin-top: -362px*/
+  position: absolute;
+  right: 20px;
+  top: 289px;
+  margin-right: -17px;
 }

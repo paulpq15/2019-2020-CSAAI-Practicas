@@ -11,8 +11,24 @@
 
 h1 {
   font-family: "Letra";
+  text-align: center;
 }
 
 h3 {
   font-family: "Letra";
+  margin-left: 40px;
+}
+
+.botones {
+  margin-left: 75px;
+}
+
+#videoenemision {
+  margin-left: 105px;
+  margin-bottom: 10px;
+}
+
+.fu3nte {
+  margin-left: 410px;
+  margin-top: -362px
 }

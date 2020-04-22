@@ -31,12 +31,14 @@ videoenemision.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/ma
 const sel1 = document.getElementById("sel1")
 const sel2 = document.getElementById("sel2")
 const sel3 = document.getElementById("sel3")
+const automatico = document.getElementById("automatico")
+const manual = document.getElementById("manual")
 
 //-- Función de retrollamada del botón de ver y marcado de la fuente seleccionada
 sel1.onclick = () => {
   console.log("Reproduciendo fuente 1");
   videoenemision.src = fuente1.src;
-  videoenemision.currentTime = fuente1.currentTime + 0.3;
+  videoenemision.currentTime = fuente1.currentTime + 0.5; // Sincronizamos los videos
   videoenemision.play();
   fuente1.style.border = '3px solid red';
   fuente2.style.border = '0px';
@@ -46,7 +48,7 @@ sel1.onclick = () => {
 sel2.onclick = () => {
   console.log("Reproduciendo fuente 2");
   videoenemision.src = fuente2.src;
-  videoenemision.currentTime = fuente2.currentTime + 0.3;
+  videoenemision.currentTime = fuente2.currentTime + 0.4;
   videoenemision.play();
   fuente1.style.border = '0px';
   fuente2.style.border = '3px solid red';
@@ -56,12 +58,32 @@ sel2.onclick = () => {
 sel3.onclick = () => {
   console.log("Reproduciendo fuente 3");
   videoenemision.src = fuente3.src;
-  videoenemision.currentTime = fuente3.currentTime + 0.3;
+  videoenemision.currentTime = fuente3.currentTime;
   videoenemision.play();
   fuente1.style.border = '0px';
   fuente2.style.border = '0px';
   fuente3.style.border = '3px solid red';
 };
+
+//auto.onclick = () => {
+  //console.log("Modo automatico activado");
+  //sel1.disabled = true;
+  //sel2.disabled = true;
+  //sel3.disabled = true;
+  //var automatic = setInterval(channel, 9000);
+  //function channel() {
+    //play1.onclick();
+    //setTimeout(play2.onclick, 3000);
+    //setTimeout(play2.onclick, 6000);
+  //}
+  //manual.onclick = () => {
+    //console.log("Modo manual activado");
+    //sel1.disabled = false;
+    //sel2.disabled = false;
+    //sel3.disabled = false;
+    //clearInterval(automatic);
+  //}
+//};
 
 //-- Funcion de retrollamada del boton de parar
 //--stop.onclick = () => {

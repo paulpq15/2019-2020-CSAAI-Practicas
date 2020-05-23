@@ -29,12 +29,9 @@ fuente4.width=200;  //-- Tamaño de la pantalla de fuente 4
 fuente4.height=100;
 fuente4.src="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/test.png"
 
-//-- Imagen estática a mostrar en el monitor y en las fuentes cuando no
+//-- Imagen estática a mostrar en el monitor cuando no
 //-- se le ha dado al play
 videoenemision.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
-fuente1.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
-fuente2.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
-fuente3.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
 
 //-- Obtener los botones
 const on = document.getElementById("on")
@@ -44,7 +41,7 @@ const sel2 = document.getElementById("sel2")
 const sel3 = document.getElementById("sel3")
 const sel4 = document.getElementById("sel4")
 
-//-- Funcion para que se visualicen las distintas fuentes salvo la que esta en pruebas
+//-- Funcion para que arranquen y se visualicen las distintas fuentes salvo la que esta en pruebas
 on.onclick = () => {
   console.log("Encendiendo las fuentes");
   fuente1.play()
@@ -97,19 +94,13 @@ sel4.onclick = () => {
   fuente4.style.border = '3px solid red';
 };
 
-//-- Funcion para que se quite la señal del monitor y de las fuentes
+//-- Funcion para que se quite la señal del monitor y se paren las fuentes
 stop.onclick = () => {
   console.log("Se quita la fuente de emision en el monitor");
   videoenemision.pause();
   videoenemision.src=null;
   videoenemision.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
   fuente1.pause();
-  fuente1.src=null;
-  fuente1.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
   fuente2.pause();
-  fuente2.src=null;
-  fuente2.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
   fuente3.pause();
-  fuente3.src=null;
-  fuente3.poster="https://github.com/paulpq15/2019-2020-CSAAI-Videos/raw/master/poster.png";
 }

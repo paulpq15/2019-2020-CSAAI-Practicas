@@ -10,11 +10,11 @@
     <h1>Tratamiento de Imágenes</h1>
     <section class="imagenes">
       <div class="original">
-        <p>Imagen Original</p>
-        <img src="blackhole.png" id="imagesrc">
+        <h3>Imagen Original</h3>
+        <img src="black-hole.jpg" id="imagesrc">
       </div>
       <div class="manipulada">
-        <p>Imagen Manipulada</p>
+        <h3>Imagen Manipulada</h3>
         <canvas id="canvas"></canvas>
       </div>
     </section>
@@ -25,19 +25,19 @@
       </div>
       <div class="deslizadores">
         <div class="deslizador1">
-          <p>Rojo:</p>
+          <span class="control"> Rojo: </span>
           <input type="range" id="rojo" min="0" max="255" value="255"/>
-          <p id="range_value_red">00</p>
+          <span id="range_value_red">255</span>
         </div>
         <div class="deslizador2">
-          <p>Verde:</p>
+          <span class="control"> Verde: </span>
           <input type="range" id="verde" min="0" max="255" value="255"/>
-          <p id="range_value_green">00</p>
+          <span id="range_value_green">255</span>
         </div>
         <div class="deslizador3">
-          <p>Azul:</p>
+          <span class="control"> Azul: </span>
           <input type="range" id="azul" min="0" max="255" value="255"/>
-          <p id="range_value_blue">00</p>
+          <span id="range_value_blue">255</span>
         </div>
       </div>
     </section>

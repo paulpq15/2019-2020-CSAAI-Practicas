@@ -75,18 +75,38 @@ function colorfilter() {
 
 //-- Funcion del filtro de grises
 function grayfilter() {
+  ctx.drawImage(img, 0,0);
+  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let data = imgData.data
   for (var i = 0; i < data.length; i+=4) {
     r = data[i];
     g = data[i+1];
     b = data[i+2];
     var brillo = (3 * r + 4 * g + b)/8
+    data[i] = brillo;
+    data[i+1] = brillo;
+    data[i+2] = brillo;
   }
-  //-- Poner la imagen modificada en el canvas
   ctx.putImageData(imgData, 0, 0);
 }
 
-//-- Funcion de retrollamada del deslizador
-deslizador.oninput = () => {
+color.onclick = () => {
+  //-- Funcion de retrollamada del deslizador 1 que es el rojo
+  deslizador1.oninput = () => {
+    colorfilter();
+  }
+  //-- Funcion de retrollamada del deslizador 2 que es el verde
+  deslizador2.oninput = () => {
+    colorfilter();
+  }
+  //-- Funcion de retrollamada del deslizador 3 que es el azul
+  deslizador3.oninput = () => {
+    colorfilter();
+  }
+}
 
+gris.onclick = () => {
+  grayfilter();
+}
 
 console.log("Fin...");

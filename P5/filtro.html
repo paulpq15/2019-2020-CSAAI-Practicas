@@ -2,15 +2,44 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Filtro</title>
+    <title>Práctica 5: Procesado de imagen</title>
     <link rel="stylesheet" href="filtro.css">
     <script src="filtro.js" defer></script>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <img src="FPGA.jpg" id="imagesrc">
-    <p>Establece el umbral de rojo:</p>
-    <input type="range" id="deslizador" min="0" max="255" value="255"/>
-    <p id="range_value">00</p>
+    <h1>Tratamiento de Imágenes</h1>
+    <section class="imagenes">
+      <div class="original">
+        <p>Imagen Original</p>
+        <img src="paisaje.png" id="imagesrc">
+      </div>
+      <div class="manipulada">
+        <p>Imagen Manipulada</p>
+        <canvas id="canvas"></canvas>
+      </div>
+    </section>
+    <section class="botonesydeslizadores">
+      <div class="botones">
+        <button type="button" id="grises">GRISES</button>
+        <button type="button" id="colores">COLORES</button>
+      </div>
+      <div class="deslizadores">
+        <div class="deslizador1">
+          <p>Rojo:</p>
+          <input type="range" id="rojo" min="0" max="255" value="255"/>
+          <p id="range_value_red">00</p>
+        </div>
+        <div class="deslizador2">
+          <p>Verde:</p>
+          <input type="range" id="verde" min="0" max="255" value="255"/>
+          <p id="range_value_green">00</p>
+        </div>
+        <div class="deslizador3">
+          <p>Azul:</p>
+          <input type="range" id="azul" min="0" max="255" value="255"/>
+          <p id="range_value_blue">00</p>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

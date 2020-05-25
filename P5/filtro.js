@@ -18,6 +18,7 @@ const value_blueslider = document.getElementById('range_value_blue')
 //--Botones para hacer que el filtro se aplique en color o en escala de grises
 const colors = document.getElementById('colores')
 const grayscale = document.getElementById('grises')
+const invert = document.getElementById('invertir')
 
 //-- Función de retrollamada de imagen cargada
 //-- La imagen no se carga instantaneamente, sino que
@@ -42,6 +43,7 @@ img.onload = function () {
 colors.onclick = () => {
   colors.style.border = '3px solid orange';
   grayscale.style.border = '0px';
+  invert.style.border = '0px';
 
   //-- Funcion de retrollamada del deslizador 1 que es el rojo
   redslider.oninput = () => {
@@ -133,6 +135,7 @@ colors.onclick = () => {
 grayscale.onclick = () => {
   colors.style.border = '0px';
   grayscale.style.border = '3px solid orange';
+  invert.style.border = '0px';
 
   //-- Situar la imagen original en el canvas
   //-- No se han hecho manipulaciones todavia
@@ -153,6 +156,35 @@ grayscale.onclick = () => {
     data[i] = brightness;
     data[i+1] = brightness;
     data[i+2] = brightness;
+  }
+
+  //-- Poner la imagen modificada en el canvas
+  ctx.putImageData(imgData, 0, 0);
+}
+
+invert.onclick = () => {
+  colors.style.border = '0px';
+  grayscale.style.border = '0px';
+  invert.style.border = '3px solid orange';
+
+  //-- Situar la imagen original en el canvas
+  //-- No se han hecho manipulaciones todavia
+  ctx.drawImage(img, 0,0);
+
+  //-- Obtener la imagen del canvas en pixeles
+  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+  //-- Obtener el array con todos los píxeles
+  let data = imgData.data
+
+  for (var i = 0; i < data.length; i+=4) {
+    r = data[i];
+    g = data[i+1];
+    b = data[i+2];
+
+    data[i] = 255 - r;
+    data[i+1] = 255 - g;
+    data[i+2] = 255 - b;
   }
 
   //-- Poner la imagen modificada en el canvas

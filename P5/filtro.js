@@ -6,18 +6,18 @@ const img = document.getElementById('imagesrc')
 const ctx = canvas.getContext('2d');
 
 //-- Acceso a los distintos deslizadores
-const deslizador1 = document.getElementById('rojo');
-const deslizador2 = document.getElementById('verde');
-const deslizador3 = document.getElementById('azul');
+const redslider = document.getElementById('rojo');
+const greenslider = document.getElementById('verde');
+const blueslider = document.getElementById('azul');
 
 //-- Valor de los distintos deslizadores
-const range_value_red = document.getElementById('range_value_red')
-const range_value_green = document.getElementById('range_value_green')
-const range_value_blue = document.getElementById('range_value_blue')
+const value_redslider = document.getElementById('range_value_red')
+const value_greenslider = document.getElementById('range_value_green')
+const value_blueslider = document.getElementById('range_value_blue')
 
 //--Botones para hacer que el filtro se aplique en color o en escala de grises
-const gris = document.getElementById('grises')
-const color = document.getElementById('color')
+const colors = document.getElementById('colores')
+const grayscale = document.getElementById('grises')
 
 //-- Función de retrollamada de imagen cargada
 //-- La imagen no se carga instantaneamente, sino que
@@ -37,12 +37,102 @@ img.onload = function () {
   console.log("Imagen lista...");
 };
 
-//-- Funcion del filtro de colores
-function colorfilter() {
-  //-- Mostrar los nuevos valores de los deslizadores en pantalla
-  range_value_red.innerHTML = deslizador1.value;
-  range_value_green.innerHTML = deslizador2.value;
-  range_value_blue.innerHTML = deslizador3.value;
+
+//-- Filtro de colores
+colors.onclick = () => {
+  colors.style.border = '3px solid orange';
+  grayscale.style.border = '0px';
+
+  //-- Funcion de retrollamada del deslizador 1 que es el rojo
+  redslider.oninput = () => {
+    //-- Mostrar el nuevo valor del deslizador rojo en pantalla
+    value_redslider.innerHTML = redslider.value;
+
+    //-- Situar la imagen original en el canvas
+    //-- No se han hecho manipulaciones todavia
+    ctx.drawImage(img, 0,0);
+
+    //-- Obtener la imagen del canvas en pixeles
+    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    //-- Obtener el array con todos los píxeles
+    let data = imgData.data
+
+    //-- Obtener el umbral de rojo del deslizador
+    umbralrojo = redslider.value
+
+    //-- Filtrar la imagen según el nuevo umbral de rojo
+    for (let i = 0; i < data.length; i+=4) {
+      if (data[i] > umbralrojo)
+        data[i] = umbralrojo;
+    }
+
+    //-- Poner la imagen modificada en el canvas
+    ctx.putImageData(imgData, 0, 0);
+  }
+
+  //-- Funcion de retrollamada del deslizador 2 que es el verde
+  greenslider.oninput = () => {
+    //-- Mostrar el nuevo valor del deslizador verde en pantalla
+    value_greenslider.innerHTML = greenslider.value;
+
+    //-- Situar la imagen original en el canvas
+    //-- No se han hecho manipulaciones todavia
+    ctx.drawImage(img, 0,0);
+
+    //-- Obtener la imagen del canvas en pixeles
+    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    //-- Obtener el array con todos los píxeles
+    let data = imgData.data
+
+    //-- Obtener el umbral de verde del deslizador
+    umbralverde = greenslider.value
+
+    //-- Filtrar la imagen según el nuevo umbral de verde
+    for (let i = 0; i < data.length; i+=4) {
+      if (data[i+1] > umbralverde)
+        data[i+1] = umbralverde;
+    }
+
+    //-- Poner la imagen modificada en el canvas
+    ctx.putImageData(imgData, 0, 0);
+  }
+
+  //-- Funcion de retrollamada del deslizador 3 que es el azul
+  blueslider.oninput = () => {
+    //-- Mostrar el nuevo valor del deslizador azul en pantalla
+    value_blueslider.innerHTML = blueslider.value;
+
+    //-- Situar la imagen original en el canvas
+    //-- No se han hecho manipulaciones todavia
+    ctx.drawImage(img, 0,0);
+
+    //-- Obtener la imagen del canvas en pixeles
+    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    //-- Obtener el array con todos los píxeles
+    let data = imgData.data
+
+    //-- Obtener el umbral de azul del deslizador
+    umbralazul = blueslider.value
+
+    //-- Filtrar la imagen según el nuevo umbral de azul
+    for (let i = 0; i < data.length; i+=4) {
+      if (data[i+2] > umbralazul)
+        data[i+2] = umbralazul;
+    }
+
+    //-- Poner la imagen modificada en el canvas
+    ctx.putImageData(imgData, 0, 0);
+  }
+}
+
+
+//-- Filtro de escala de grises
+grayscale.onclick = () => {
+  colors.style.border = '0px';
+  grayscale.style.border = '3px solid orange';
 
   //-- Situar la imagen original en el canvas
   //-- No se han hecho manipulaciones todavia
@@ -54,59 +144,19 @@ function colorfilter() {
   //-- Obtener el array con todos los píxeles
   let data = imgData.data
 
-  //-- Obtener los umbrales de colores de los deslizadores
-  umbralrojo = deslizador1.value
-  umbralverde = deslizador2.value
-  umbralazul = deslizador3.value
-
-  //-- Filtrar la imagen según los nuevos umbrales
-  for (let i = 0; i < data.length; i+=4) {
-    if (data[i] > umbralrojo)
-      data[i] = umbralrojo;
-    if (data[i+1] > umbralverde)
-      data[i+1] = umbralverde;
-    if (data[i+2] > umbralazul)
-      data[i+2] = umbralazul;
-  }
-
-  //-- Poner la imagen modificada en el canvas
-  ctx.putImageData(imgData, 0, 0);
-}
-
-//-- Funcion del filtro de grises
-function grayfilter() {
-  ctx.drawImage(img, 0,0);
-  let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  let data = imgData.data
   for (var i = 0; i < data.length; i+=4) {
     r = data[i];
     g = data[i+1];
     b = data[i+2];
-    var brillo = (3 * r + 4 * g + b)/8
-    data[i] = brillo;
-    data[i+1] = brillo;
-    data[i+2] = brillo;
+
+  let brightness = (3 * r + 4 * g + b)/8
+    data[i] = brightness;
+    data[i+1] = brightness;
+    data[i+2] = brightness;
   }
+
+  //-- Poner la imagen modificada en el canvas
   ctx.putImageData(imgData, 0, 0);
-}
-
-color.onclick = () => {
-  //-- Funcion de retrollamada del deslizador 1 que es el rojo
-  deslizador1.oninput = () => {
-    colorfilter();
-  }
-  //-- Funcion de retrollamada del deslizador 2 que es el verde
-  deslizador2.oninput = () => {
-    colorfilter();
-  }
-  //-- Funcion de retrollamada del deslizador 3 que es el azul
-  deslizador3.oninput = () => {
-    colorfilter();
-  }
-}
-
-gris.onclick = () => {
-  grayfilter();
 }
 
 console.log("Fin...");

@@ -46,13 +46,16 @@ button{
 }
 .original {
     float: left;
+    margin-left: 50px;
 }
 .manipulada {
     float: right;
+    margin-right: 50px;
 }
 .botonesydeslizadores {
-    margin-top: 410px;
+    margin-top: 440px;
     padding-left: 400px;
+    margin-left: 65px;
 }
 .control {
     padding-left: 22px;

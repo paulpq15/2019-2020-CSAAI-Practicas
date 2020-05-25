@@ -7,3 +7,29 @@ body {
 #canvas {
   background-color: black;
 }
+
+h1 {
+  font-size: 45px;
+  color: pink;
+  margin-left: 225px;
+  text-shadow:
+   -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+   -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+.options {
+  margin-left: 245px;
+}
+
+.informacion {
+  margin-left: 180px;
+}
+
+img {
+  float: right;
+  position: absolute;
+  right: 100px;
+  top: 70px;
+}

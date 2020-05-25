@@ -7,8 +7,8 @@ class Bola {
     this.size = 5;
 
     //-- Constante: Posicion inicial de la bola en la raqueta izquierda
-    this.x_ini_i = 100;
-    this.y_ini_i = 200;
+    this.x_ini = 100;
+    this.y_ini = 200;
 
     //-- Constante: Posicion inicial de la bola en la raqueta derecha
     this.x_ini_d = 500;
@@ -19,8 +19,8 @@ class Bola {
     this.y = 0;
 
     //-- Velocidad inicial de la bola en la raqueta izquierda
-    this.vx_ini_i = 6;
-    this.vy_ini_i = 2;
+    this.vx_ini = 6;
+    this.vy_ini = 2;
 
     //-- Velocidad inicial de la bola en la raqueta derecha
     this.vx_ini_d = -6;
@@ -45,10 +45,10 @@ class Bola {
     this.ctx.fill();
   }
 
-  initizq() {
+  init() {
     //-- Inicializa la bola: A su posicion inicial en la raqueta izquierda
-    this.x = this.x_ini_i;
-    this.y = this.y_ini_i;
+    this.x = this.x_ini;
+    this.y = this.y_ini;
     this.vx = 0;
     this.vy = 0;
   }

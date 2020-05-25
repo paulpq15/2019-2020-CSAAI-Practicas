@@ -14,7 +14,6 @@ const ctx = canvas.getContext("2d");
 const sonido_raqueta = new Audio("Raqueta.mp3");
 const sonido_rebote = new Audio("Rebote.mp3");
 const sonido_gol = new Audio("Gol.mp3");
-const sonido_triunfo = new Audio("Triunfo.mp3");
 
 //-- Estados del juego
 const ESTADO = {
@@ -22,7 +21,6 @@ const ESTADO = {
   SAQUEIZQ: 1,
   JUGANDO: 2,
   SAQUEDCHO: 3,
-  END: 4;
 }
 
 //-- Variables de ESTADO
@@ -32,9 +30,6 @@ let estado = ESTADO.INIT;
 //-- Declaramos los puntajes
 var marcador_derecha = 0;
 var marcador_izquierda = 0;
-
-//-- Declaramos el puntaje alto para acabar el juego
-var marcador_maximo = 5;
 
 //-- Pintar todos los objetos en el canvas
 function draw() {
@@ -65,29 +60,23 @@ function draw() {
   ctx.stroke();
 
   //------ Dibujar el tanteo
-  ctx.font = "100px Arial";
+  ctx.font = "25px Arial";
   ctx.fillStyle = "white";
-  ctx.fillText("marcador_izquierda", 200, 80);
-  ctx.fillText("marcador_derecha", 340, 80);
+  ctx.fillText(marcador_izquierda, 200, 80);
+  ctx.fillText(marcador_derecha, 340, 80);
 
   //-- Dibujar el texto de sacar
-  if (estado == ESTADO.SAQUEIZQ || estado == ESTADOO.SAQUEDCHO {
-    ctx.font = "40px Arial";
+  if (estado == ESTADO.SAQUEIZQ || estado == ESTADO.SAQUEDCHO) {
+    ctx.font = "30px Arial";
     ctx.fillStyle = "yellow";
     ctx.fillText("Saca!", 30, 350);
   }
 
   //-- Dibujar el texto de comenzar
   if (estado == ESTADO.INIT) {
-    ctx.font = "40px Arial";
+    ctx.font = "30px Arial";
     ctx.fillStyle = "green";
     ctx.fillText("Pulsa Start!", 30, 350);
-  }
-
-  if (estado == ESTADO.END) {
-    ctx.font = "40px Arial";
-    ctx.fillStyle = "yellow";
-    ctx.fillText("Se acabo! Dale de nuevo al Start", 30, 350);
   }
 }
 
@@ -99,40 +88,25 @@ function animacion() {
   raqD.update();
 
 
- //-- Comprobar si la bola ha alcanzado el límite derecho
+ //-- Comprobar si la bola ha alcanzado el límite derecho o izquierdo
  //-- Si es así, se cambia de signo la velocidad, para
  // que "rebote" y vaya en el sentido opuesto
+
  if (bola.x >= canvas.width) {
    estado = ESTADO.SAQUEDCHO;
    bola.initdcha();
+   marcador_izquierda ++
+   console.log("Tanto para la Raqueta Izquierda!!!")
    sonido_gol.currentTime = 0;
    sonido_gol.play();
-   console.log("Tanto para la Raqueta Izquierda!!!")
-   marcador_izquierda ++;
-   if (marcador_izquierda == marcador_maximo) {
-     estado = ESTADO.END;
-     sonido_triunfo.play();
-   }
-   //-- Hay colisión. Cambiar el signo de la bola
-   bola.vx = bola.vx * -1
-   //-- Reproducir sonido
-   sonido_rebote.currentTime = 0;
-   sonido_rebote.play();
 
  } else if (bola.x <= 0) {
    estado = ESTADO.SAQUEIZQ;
-   bola.initizq();
+   bola.init();
+   marcador_derecha ++;
+   console.log("Tanto para la Raqueta Derecha!!!")
    sonido_gol.currentTime = 0;
    sonido_gol.play();
-   console.log("Tanto para la Raqueta Derecha!!!")
-   marcador_derecha ++;
-   if (marcador_derecha == marcador_maximo) {
-     estado = ESTADO.END;
-     sonido_triunfo.play();
-   }
-   //-- Reproducir sonido
-   sonido_rebote.currentTime = 0;
-   sonido_rebote.play();
 
  } else if (bola.y >= canvas.height) {
    //-- Hay colisión. Cambiar el signo de la bola
@@ -229,11 +203,11 @@ window.onkeydown = (e) => {
         sonido_raqueta.play();
 
         //-- Llevar bola a su posicion incicial
-        bola.initizq();
+        bola.init();
 
         //-- Darle velocidad
-        bola.vx = bola.vx_ini_i;
-        bola.vy = bola.vy_ini_i;
+        bola.vx = bola.vx_ini;
+        bola.vy = bola.vy_ini;
 
         //-- Cambiar al estado de jugando!
         estado = ESTADO.JUGANDO;

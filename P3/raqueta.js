@@ -1,6 +1,5 @@
 //-- Objeto raqueta
-class Raqueta
-{
+class Raqueta {
   constructor(ctx) {
 
     //-- Guardar el contexto
@@ -25,21 +24,18 @@ class Raqueta
   }
 
   //-- Inicializar la raqueta a su posicion original
-  init()
-  {
+  init() {
     this.x = this.x_ini;
     this.y = this.y_ini;
   }
 
   //-- Actualizar la posición de la raqueta
-  update()
-  {
+  update() {
     this.y += this.v;
   }
 
   //-- Dibujar la raqueta
-  draw()
-  {
+  draw() {
     //------- Dibujar las raquetas
     this.ctx.beginPath();
     this.ctx.fillStyle='white';

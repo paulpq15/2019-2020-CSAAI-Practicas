@@ -45,7 +45,7 @@ class Bola {
     this.ctx.fill();
   }
 
-  init() {
+  initizq() {
     //-- Inicializa la bola: A su posicion inicial en la raqueta izquierda
     this.x = this.x_ini_i;
     this.y = this.y_ini_i;

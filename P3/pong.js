@@ -18,9 +18,8 @@ const sonido_gol = new Audio("Gol.mp3");
 //-- Estados del juego
 const ESTADO = {
   INIT: 0,
-  SAQUEIZQ: 1,
+  SAQUE: 1,
   JUGANDO: 2,
-  SAQUEDCHO: 3,
 }
 
 //-- Variables de ESTADO
@@ -66,7 +65,7 @@ function draw() {
   ctx.fillText(marcador_derecha, 340, 80);
 
   //-- Dibujar el texto de sacar
-  if (estado == ESTADO.SAQUEIZQ || estado == ESTADO.SAQUEDCHO) {
+  if (estado == ESTADO.SAQUE) {
     ctx.font = "30px Arial";
     ctx.fillStyle = "yellow";
     ctx.fillText("Saca!", 30, 350);
@@ -93,15 +92,15 @@ function animacion() {
  // que "rebote" y vaya en el sentido opuesto
 
  if (bola.x >= canvas.width) {
-   estado = ESTADO.SAQUEDCHO;
-   bola.initdcha();
+   estado = ESTADO.SAQUE;
+   bola.init();
    marcador_izquierda ++
    console.log("Tanto para la Raqueta Izquierda!!!")
    sonido_gol.currentTime = 0;
    sonido_gol.play();
 
  } else if (bola.x <= 0) {
-   estado = ESTADO.SAQUEIZQ;
+   estado = ESTADO.SAQUE;
    bola.init();
    marcador_derecha ++;
    console.log("Tanto para la Raqueta Derecha!!!")
@@ -110,14 +109,14 @@ function animacion() {
 
  } else if (bola.y >= canvas.height) {
    //-- Hay colisión. Cambiar el signo de la bola
-   bola.vy = bola.vy * -1
+   bola.vy = bola.vy * -1;
    //-- Reproducir sonido
    sonido_rebote.currentTime = 0;
    sonido_rebote.play();
 
  } else if (bola.y <= 0) {
    //-- Hay colisión. Cambiar el signo de la bola
-   bola.vy = bola.vy * -1
+   bola.vy = bola.vy * -1;
    //-- Reproducir sonido
    sonido_rebote.currentTime = 0;
    sonido_rebote.play();
@@ -197,7 +196,7 @@ window.onkeydown = (e) => {
     case " ":
 
       //-- El saque solo funciona en el estado de SAQUE
-      if (estado == ESTADO.SAQUEIZQ) {
+      if (estado == ESTADO.SAQUE) {
         //-- Reproducir sonido
         sonido_raqueta.currentTime = 0;
         sonido_raqueta.play();
@@ -208,24 +207,6 @@ window.onkeydown = (e) => {
         //-- Darle velocidad
         bola.vx = bola.vx_ini;
         bola.vy = bola.vy_ini;
-
-        //-- Cambiar al estado de jugando!
-        estado = ESTADO.JUGANDO;
-
-        return false;
-      }
-
-      if (estado == ESTADO.SAQUEDCHO) {
-        //-- Reproducir sonido
-        sonido_raqueta.currentTime = 0;
-        sonido_raqueta.play();
-
-        //-- Llevar bola a su posicion incicial
-        bola.initdcha();
-
-        //-- Darle velocidad
-        bola.vx = bola.vx_ini_d;
-        bola.vy = bola.vy_ini_d;
 
         //-- Cambiar al estado de jugando!
         estado = ESTADO.JUGANDO;

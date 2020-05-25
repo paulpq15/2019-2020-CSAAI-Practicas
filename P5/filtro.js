@@ -18,7 +18,7 @@ const value_blueslider = document.getElementById('range_value_blue')
 //--Botones para hacer que el filtro se aplique en color o en escala de grises
 const colors = document.getElementById('colores')
 const grayscale = document.getElementById('grises')
-const invert = document.getElementById('invertir')
+const invertcolors = document.getElementById('invertircolores')
 
 //-- Función de retrollamada de imagen cargada
 //-- La imagen no se carga instantaneamente, sino que
@@ -43,15 +43,15 @@ img.onload = function () {
 colors.onclick = () => {
   colors.style.border = '3px solid orange';
   grayscale.style.border = '0px';
-  invert.style.border = '0px';
+  invertcolors.style.border = '0px';
+
+  ctx.drawImage(img, 0,0);
 
   //-- Funcion de retrollamada del deslizador 1 que es el rojo
   redslider.oninput = () => {
     //-- Mostrar el nuevo valor del deslizador rojo en pantalla
     value_redslider.innerHTML = redslider.value;
 
-    //-- Situar la imagen original en el canvas
-    //-- No se han hecho manipulaciones todavia
     ctx.drawImage(img, 0,0);
 
     //-- Obtener la imagen del canvas en pixeles
@@ -78,14 +78,10 @@ colors.onclick = () => {
     //-- Mostrar el nuevo valor del deslizador verde en pantalla
     value_greenslider.innerHTML = greenslider.value;
 
-    //-- Situar la imagen original en el canvas
-    //-- No se han hecho manipulaciones todavia
     ctx.drawImage(img, 0,0);
 
-    //-- Obtener la imagen del canvas en pixeles
     let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-    //-- Obtener el array con todos los píxeles
     let data = imgData.data
 
     //-- Obtener el umbral de verde del deslizador
@@ -97,7 +93,6 @@ colors.onclick = () => {
         data[i+1] = umbralverde;
     }
 
-    //-- Poner la imagen modificada en el canvas
     ctx.putImageData(imgData, 0, 0);
   }
 
@@ -106,14 +101,10 @@ colors.onclick = () => {
     //-- Mostrar el nuevo valor del deslizador azul en pantalla
     value_blueslider.innerHTML = blueslider.value;
 
-    //-- Situar la imagen original en el canvas
-    //-- No se han hecho manipulaciones todavia
     ctx.drawImage(img, 0,0);
 
-    //-- Obtener la imagen del canvas en pixeles
     let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-    //-- Obtener el array con todos los píxeles
     let data = imgData.data
 
     //-- Obtener el umbral de azul del deslizador
@@ -125,7 +116,6 @@ colors.onclick = () => {
         data[i+2] = umbralazul;
     }
 
-    //-- Poner la imagen modificada en el canvas
     ctx.putImageData(imgData, 0, 0);
   }
 }
@@ -135,18 +125,16 @@ colors.onclick = () => {
 grayscale.onclick = () => {
   colors.style.border = '0px';
   grayscale.style.border = '3px solid orange';
-  invert.style.border = '0px';
+  invertcolors.style.border = '0px';
 
-  //-- Situar la imagen original en el canvas
-  //-- No se han hecho manipulaciones todavia
   ctx.drawImage(img, 0,0);
 
-  //-- Obtener la imagen del canvas en pixeles
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-  //-- Obtener el array con todos los píxeles
   let data = imgData.data
 
+  //-- Tiene la funcion de obtener los valores RGB de cada pixel
+  //-- para despues calcular el nivel de gris y lo asigna a ese pixel
   for (var i = 0; i < data.length; i+=4) {
     r = data[i];
     g = data[i+1];
@@ -158,23 +146,21 @@ grayscale.onclick = () => {
     data[i+2] = brightness;
   }
 
-  //-- Poner la imagen modificada en el canvas
   ctx.putImageData(imgData, 0, 0);
 }
 
-invert.onclick = () => {
+
+//-- Filtro de inversión de colores.
+//-- útil para obtener un positivo desde una imagen en negativo.
+invertcolors.onclick = () => {
   colors.style.border = '0px';
   grayscale.style.border = '0px';
-  invert.style.border = '3px solid orange';
+  invertcolors.style.border = '3px solid orange';
 
-  //-- Situar la imagen original en el canvas
-  //-- No se han hecho manipulaciones todavia
   ctx.drawImage(img, 0,0);
 
-  //-- Obtener la imagen del canvas en pixeles
   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-  //-- Obtener el array con todos los píxeles
   let data = imgData.data
 
   for (var i = 0; i < data.length; i+=4) {
@@ -187,7 +173,6 @@ invert.onclick = () => {
     data[i+2] = 255 - b;
   }
 
-  //-- Poner la imagen modificada en el canvas
   ctx.putImageData(imgData, 0, 0);
 }
 

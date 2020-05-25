@@ -37,11 +37,11 @@ button{
     border: 1px solid;
     color: #444;
     height: 32px;
-    width: 110px;
+    width: 130px;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: normal;
-    margin-left: 25px;
+    margin-left: 2px;
     margin-bottom: 10px;
 }
 .original {
@@ -55,7 +55,7 @@ button{
 .botonesydeslizadores {
     margin-top: 440px;
     padding-left: 400px;
-    margin-left: 65px;
+    margin-left: 45px;
 }
 .control {
     padding-left: 22px;

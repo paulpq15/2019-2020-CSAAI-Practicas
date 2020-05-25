@@ -53,7 +53,7 @@ on.onclick = () => {
 sel1.onclick = () => {
   console.log("Reproduciendo fuente 1");
   videoenemision.src = fuente1.src;
-  videoenemision.currentTime = fuente1.currentTime + 0.5; // Sincronizamos los videos
+  videoenemision.currentTime = fuente1.currentTime; // Sincronizamos los videos
   videoenemision.play();
   fuente1.style.border = '3px solid red';
   fuente2.style.border = '0px';
@@ -64,7 +64,7 @@ sel1.onclick = () => {
 sel2.onclick = () => {
   console.log("Reproduciendo fuente 2");
   videoenemision.src = fuente2.src;
-  videoenemision.currentTime = fuente2.currentTime + 0.4;
+  videoenemision.currentTime = fuente2.currentTime;
   videoenemision.play();
   fuente1.style.border = '0px';
   fuente2.style.border = '3px solid red';

@@ -17,8 +17,9 @@ const sonido_rebote = new Audio("pong-rebote.mp3");
 //-- Estados del juego
 const ESTADO = {
   INIT: 0,
-  SAQUE: 1,
+  SAQUEIZQ: 1,
   JUGANDO: 2,
+  SAQUEDCHO: 3,
 }
 
 //-- Variables de ESTADO
